@@ -49,6 +49,7 @@ private int V(Tablero tablero, int jugador, int nivel) {
 ```
 
 El funcionamiento del código es el siguiente:
+
 1. Primero, tenemos los **casos base**:
   * Si **he ganado**, no genero más jugadas y el nodo se queda con la **máxima puntuación**.
   * Si **he perdido**, igual que si ganara pero ahora la **puntuación** es la **mínima**.
