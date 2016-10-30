@@ -1,5 +1,5 @@
-# <p align="center">Práctica 1 Sistemas Inteligentes</p>
-## <p align="center">Algoritmo Minimax con poda α-β para el juego Conecta-4</p>
+# Práctica 1 Sistemas Inteligentes
+## Algoritmo Minimax con poda α-β para el juego Conecta-4
 
 ### Introducción
 Se nos pide implementar el famoso algoritmo de búsqueda de juegos **Minimax** y una **función de evaluación** para el juego **Conecta-4**, también conocido como 4 en raya. Opcionalmente, se puede añadir una variante que incluya la **poda α-β** para optimizar el rendimiento.
