@@ -287,6 +287,7 @@ cantidad de imágenes falladas (caras y no-caras) con 500 iteraciones**. Esto es
 lo que hemos podido observar:
 
 ![graficos_adaboost_aciertos.png](https://s27.postimg.org/wlfg3xxf7/graficos_adaboost_aciertos.png)
+
 Aquí comprobamos cómo **cada vez la tasa de acierto es superior**, teniendo una
 subida muy drástica al inicio de la ejecución. Más tarde, **sobre la iteración 150, se estabiliza**.
 A partir de la iteración 200 la tasa apenas varía, y lo mismo le ocurre con el test.
@@ -297,6 +298,7 @@ y los pocos que se observan son siempre al alza. **Esto posiblemente no sea así
 otras proporciones y, sobre todo, utilizando un conjunto de imágenes más variado**.
 
 ![graficos_adaboost_fallos.png](https://s28.postimg.org/j4yim37t9/graficos_adaboost_fallos.png)
+
 Y aquí vemos cómo en todo momento **cuando el clasificador falla** (el porcentaje
 restante al de los aciertos) **lo hace siempre en base a caras**; detecta más fácilmente
 la ausencia de éstas. Si bien **la diferencia entre los fallos de las imágenes de
