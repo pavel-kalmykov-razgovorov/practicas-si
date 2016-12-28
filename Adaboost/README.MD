@@ -134,6 +134,7 @@ resto para test, que es la elección más común):
 | 5000        	| 95,18%   	| 1,04%         	| 0,36%      	|
 
 Gráficamente se puede observar con mayor facilidad:
+
 ![graficos_debil.png](https://s27.postimg.org/gb1ra2deb/graficos_debil.png)
 
 Podemos observar cómo **500 hiperplanos es la mejor elección**, pues el índice de
