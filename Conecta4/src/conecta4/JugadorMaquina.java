@@ -7,7 +7,7 @@ package conecta4;
 public class JugadorMaquina extends Jugador{
 
     //Profundidad hasta la que se va a desarrollar el árbol de juego
-    private final static int NIVEL_DEFECTO = 6;
+    private final static int NIVEL_DEFECTO = 8;
     
     //Variables del tipo de jugador
     private final static int MIN = 1;
@@ -44,10 +44,11 @@ public class JugadorMaquina extends Jugador{
     public void minimax() {
         int max = Integer.MIN_VALUE, max_i = -1;
         for (int i = 0; i < m_tablero.numColumnas(); i++) {
-            Tablero sucesor = new Tablero(m_tablero);
-            if(sucesor.ponerFicha(i, MAX) == 0) {
+            Tablero sucesor = new Tablero(m_tablero); //Genero los sucesores
+            if(sucesor.ponerFicha(i, MAX) == 0) { //Si he podido poner una ficha en la columna i
+                //Elijo el tipo de función dependiendo de si he elegido con poda o sin ella
                 int actual = Interfaz.ALPHABETA_TOGGLE ? alphaBetaV(sucesor, MIN, 1, Integer.MIN_VALUE, Integer.MAX_VALUE) : V(sucesor, MIN, 1);
-                if (actual > max) {
+                if (actual > max) { //Actualizo valores si he encontrado un movimiento mejor
                     max = actual;
                     max_i = i;
                 }
@@ -61,7 +62,7 @@ public class JugadorMaquina extends Jugador{
                 buenaTirada = true;
                 m_columna = columna;
             } else {
-                columna = (int) (Math.random()*m_tablero.numColumnas());
+                columna = (int) (Math.random()*m_tablero.numColumnas()); //Sólo si he perdido no sabe qué columna coger
             }
         }
         System.out.println(/*"Total llamadas a V: " +*/ LLAMADAS_V);
@@ -76,6 +77,7 @@ public class JugadorMaquina extends Jugador{
         if (nivel == NIVEL_DEFECTO) return f(tablero);
         
         //Caso general:
+        //Extremo -> Palabra que engloba MÁX y MIN en una sola
         int extremo = jugador == MAX ? Integer.MIN_VALUE : Integer.MAX_VALUE;
         for (int i = 0; i < tablero.numColumnas(); i++) {
             Tablero sucesor = new Tablero(tablero);
@@ -101,11 +103,11 @@ public class JugadorMaquina extends Jugador{
             if(sucesor.ponerFicha(i, jugador) == 0) {
                 if(jugador == MAX) {
                     alpha = Math.max(alpha, alphaBetaV(sucesor, MIN, nivel + 1, alpha, beta));
-                    if(alpha >= beta) return beta;
+                    if(alpha >= beta) return beta; //Si la condición de la poda no se cumple, no voy a encontrar nada mejor
                     extremo = alpha;
                 } else { //MIN
                     beta = Math.min(beta, alphaBetaV(sucesor, MAX, nivel + 1, alpha, beta));
-                    if(alpha >= beta) return alpha;
+                    if(alpha >= beta) return alpha; //Si la condición de la poda no se cumple, no voy a encontrar nada peor
                     extremo = beta;
                 }
             }
@@ -136,7 +138,7 @@ public class JugadorMaquina extends Jugador{
                     total += puntos;
                 }
             }
-        } else {
+        } else { //JUGADAS DE LIBRO -> Sólo si estoy en las primeras jugadas con NIVEL_DEFECTO = 2
             //System.out.println("Jugadas de libro");
             if(t.obtenerCasilla(0, 3) == MIN) { //Jugador 1 ha empezado poniendo en el medio
                 if (t.obtenerCasilla(0, 2) == MAX || t.obtenerCasilla(0, 4) == MAX) total = 2; //BUENO
