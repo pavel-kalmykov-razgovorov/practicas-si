@@ -1,8 +1,11 @@
 package adaboost;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,6 +17,7 @@ public class Practica2SI {
     private int NUM_ITERACIONES;
     private int NUM_CLASIFICADORES;
     private boolean VERBOSE;
+    static boolean VERY_VERBOSE = false;
 
     private double testRate;
 
@@ -54,6 +58,16 @@ public class Practica2SI {
         long t1 = System.currentTimeMillis();
         //WeakLearner learner = new WeakLearner(NUM_CLASIFICADORES, listaAprendizaje);
         StrongLearner learner = new StrongLearner(listaAprendizaje, listaTest, NUM_ITERACIONES, NUM_CLASIFICADORES);
+        //Prueba escritura-lectura del clasificador
+        try {
+            System.out.println("Guardando en disco...");
+            learner.saveLearner("learner.json", true);
+            System.out.println("Leyendo de disco...");
+            learner = StrongLearner.loadLearner("learner.json");
+        } catch (IOException ex) {
+            Logger.getLogger(Practica2SI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         long t2 = System.currentTimeMillis();
         long time;
         time = t2 - t1;
@@ -157,6 +171,10 @@ public class Practica2SI {
                             break;
                     case 'v':
                             programa.setVerbose(true);
+                            paso = 1;
+                            break;
+                    case 'V':
+                            VERY_VERBOSE = true;
                             paso = 1;
                             break;
                     default:

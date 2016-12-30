@@ -1,9 +1,9 @@
 package adaboost;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
 
 /**
  * Clase cara. Representa un ejemplo para el learn.
@@ -14,16 +14,25 @@ public class Cara {
     private int tipo;
 
     //EXTREMOS RGB -> Para el hiperplano
-    static final int MIN_RGB = 0;
-    static final int MAX_RGB = 255;
+    public static final int MIN_RGB = 0;
+    public static final int MAX_RGB = 255;
     //TIPOS -> Facilita la comprensión del código
-    static final int CARA = 1;
-    static final int NO_CARA = -1;
+    public static final int CARA = 1;
+    public static final int NO_CARA = -1;
     //PESO -> Para Adaboost
     private double peso = 1; //Por defecto 1 para que el clasificador débil contabilice cada fallo como unitario
     double getPeso() { return peso; }
     void setPeso(double value) { peso = value; }
-    
+
+    /**
+     * Constructor por defecto sólo con los píxeles. Para la parte optativa
+     * @param data los píxeles
+     */
+    public Cara(int[] data) {
+        for (int i = 0; i < data.length; i++) data[i] &= 0x000000FF;
+        this.data = data;
+    }
+
     /**
      * Lee la información de una imagen desde un fichero. Le asigna el tipo
      * que se recibe como parametro
@@ -38,9 +47,9 @@ public class Cara {
         {
             bimage = ImageIO.read(fcara);
             data = bimage.getRGB(0, 0, bimage.getWidth(), bimage.getHeight(), null, 0, bimage.getWidth());
-            //Asumiendo que la imagen ya está en escala de grises pero en formato color, 
+            //Asumiendo que la imagen ya está en escala de grises pero en formato color,
             //convertimos ARGB en un único valor
-            for(cont=0;cont<data.length;cont++) data[cont] = data[cont] & mask; 
+            for(cont=0;cont<data.length;cont++) data[cont] = data[cont] & mask;
             this.tipo = tipo;
         } catch (IOException e) { System.out.println(e.getMessage()); }
     }

@@ -154,16 +154,19 @@ Ahora que ya tenemos nuestro clasificador débil operativo, pasaremos a emplear
 el algoritmo Adaboost.
 
 Primero deberemos de establecer **cómo vamos a asignarle el peso a una imagen**:
-1. Una opción es disponer de un **array** de pesos cuya posición se asocie a la de
+* Una opción es disponer de un **array** de pesos cuya posición se asocie a la de
 cada imagen. Una opción totalmente válida que he visto en muchas implementaciones.
+
 ```java
 //(Dentro del constructor)
 double[] pesos = new double[faces.size()];
 ```
-2. Otra es **agregarle a la clase `Cara` un nuevo atributo `peso`** que sea el peso
+
+* Otra es **agregarle a la clase `Cara` un nuevo atributo `peso`** que sea el peso
 que Adaboost asocie a cada imagen. De esta forma (que es la que he escogido) hacemos
 uso de una de las características más importantes de la programación orientada
 a objetos: la Encapsulación.
+
 ```java
 private double peso = 1;
 double getPeso() { return peso; }
