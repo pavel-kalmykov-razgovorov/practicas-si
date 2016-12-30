@@ -322,3 +322,6 @@ detectar bien las caras**.
 6. [Paper sobre detección de caras en tiempo real](https://www.vision.caltech.edu/html-files/EE148-2005-Spring/pprs/viola04ijcv.pdf)
 7. [Detección de caras en OpenCV (C++)](http://code.opencv.org/projects/opencv/wiki/FaceDetection)
 8. [Detección de caras en OpenCV (Python)](http://docs.opencv.org/trunk/d7/d8b/tutorial_py_face_detection.html)
+
+#### Pavel Razgovorov (pr18@alu.ua.es)
+ [![creactive-commons](http://es.creativecommons.org/blog/wp-content/uploads/2013/04/by-nc.eu_petit.png)](http://es.creativecommons.org/blog/wp-content/uploads/2013/04/by-nc.eu_petit.png)
